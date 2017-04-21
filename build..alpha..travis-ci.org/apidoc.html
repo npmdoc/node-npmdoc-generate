@@ -1,0 +1,3483 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/generate/generate"
+
+    >generate (v0.13.1)</a>
+</h1>
+<h4>Command line tool and developer framework for scaffolding out new GitHub projects. Generate offers the robustness and configurability of Yeoman, the expressiveness and simplicity of Slush, and more powerful flow control and composability than either.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.generate">module generate</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.generate">
+            function <span class="apidocSignatureSpan"></span>generate
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.handleErr">
+            function <span class="apidocSignatureSpan">generate.</span>handleErr
+            <span class="apidocSignatureSpan">(app, err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.initGenerateCLI">
+            function <span class="apidocSignatureSpan">generate.</span>initGenerateCLI
+            <span class="apidocSignatureSpan">(app, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.initGenerateListeners">
+            function <span class="apidocSignatureSpan">generate.</span>initGenerateListeners
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.initGenerateMiddleware">
+            function <span class="apidocSignatureSpan">generate.</span>initGenerateMiddleware
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.lookup">
+            function <span class="apidocSignatureSpan">generate.</span>lookup
+            <span class="apidocSignatureSpan">(key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins">
+            function <span class="apidocSignatureSpan">generate.</span>plugins
+            <span class="apidocSignatureSpan">(name, alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils">
+            function <span class="apidocSignatureSpan">generate.</span>utils
+            <span class="apidocSignatureSpan">(name, alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.</span>_callbacks</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.generate.plugins">module generate.plugins</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.plugins">
+            function <span class="apidocSignatureSpan">generate.</span>plugins
+            <span class="apidocSignatureSpan">(name, alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.conflicts">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>conflicts
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.dest">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>dest
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.destPath">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>destPath
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.generators">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>generators
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.loader">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>loader
+            <span class="apidocSignatureSpan">(patterns, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.logger">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>logger
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.npm">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>npm
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.pipeline">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>pipeline
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.prompt">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>prompt
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.questions">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>questions
+            <span class="apidocSignatureSpan">(config, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.rename">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>rename
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.runner">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>runner
+            <span class="apidocSignatureSpan">(Ctor, config, argv, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.runtimes">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>runtimes
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.src">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>src
+            <span class="apidocSignatureSpan">(collection)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.store">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>store
+            <span class="apidocSignatureSpan">(name, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.plugins.stores">
+            function <span class="apidocSignatureSpan">generate.plugins.</span>stores
+            <span class="apidocSignatureSpan">(proto)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.generate.utils">module generate.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.utils">
+            function <span class="apidocSignatureSpan">generate.</span>utils
+            <span class="apidocSignatureSpan">(name, alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.Store">
+            function <span class="apidocSignatureSpan">generate.utils.</span>Store
+            <span class="apidocSignatureSpan">(name, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.arrayify">
+            function <span class="apidocSignatureSpan">generate.utils.</span>arrayify
+            <span class="apidocSignatureSpan">(val)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.ask">
+            function <span class="apidocSignatureSpan">generate.utils.</span>ask
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.askWhen">
+            function <span class="apidocSignatureSpan">generate.utils.</span>askWhen
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.define">
+            function <span class="apidocSignatureSpan">generate.utils.</span>define
+            <span class="apidocSignatureSpan">(obj, prop, val)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.exists">
+            function <span class="apidocSignatureSpan">generate.utils.</span>exists
+            <span class="apidocSignatureSpan">(filepath)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.extend">
+            function <span class="apidocSignatureSpan">generate.utils.</span>extend
+            <span class="apidocSignatureSpan">(o)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.firstIndex">
+            function <span class="apidocSignatureSpan">generate.utils.</span>firstIndex
+            <span class="apidocSignatureSpan">(arr, items)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.get">
+            function <span class="apidocSignatureSpan">generate.utils.</span>get
+            <span class="apidocSignatureSpan">(obj, prop, a, b, c)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.getTasks">
+            function <span class="apidocSignatureSpan">generate.utils.</span>getTasks
+            <span class="apidocSignatureSpan">(configFile, arrays)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.isObject">
+            function <span class="apidocSignatureSpan">generate.utils.</span>isObject
+            <span class="apidocSignatureSpan">(val)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.lazyData">
+            function <span class="apidocSignatureSpan">generate.utils.</span>lazyData
+            <span class="apidocSignatureSpan">(app, key, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.log">
+            function <span class="apidocSignatureSpan">generate.utils.</span>log
+            <span class="apidocSignatureSpan">(name, alias)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.macros">
+            function <span class="apidocSignatureSpan">generate.utils.</span>macros
+            <span class="apidocSignatureSpan">(name, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.parse">
+            function <span class="apidocSignatureSpan">generate.utils.</span>parse
+            <span class="apidocSignatureSpan">(args, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.parseArgs">
+            function <span class="apidocSignatureSpan">generate.utils.</span>parseArgs
+            <span class="apidocSignatureSpan">(argv)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.renameKey">
+            function <span class="apidocSignatureSpan">generate.utils.</span>renameKey
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.resolve">
+            function <span class="apidocSignatureSpan">generate.utils.</span>resolve
+            <span class="apidocSignatureSpan">(name, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.runnerEnabled">
+            function <span class="apidocSignatureSpan">generate.utils.</span>runnerEnabled
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.strip">
+            function <span class="apidocSignatureSpan">generate.utils.</span>strip
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.table">
+            function <span class="apidocSignatureSpan">generate.utils.</span>table
+            <span class="apidocSignatureSpan">(rows_, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.generate.utils.through">
+            function <span class="apidocSignatureSpan">generate.utils.</span>through
+            <span class="apidocSignatureSpan">(options, transform, flush)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>_argv</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>args</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>argv</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>blacklist</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>common</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">generate.utils.</span>opts</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">generate.utils.</span>gm</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.generate" id="apidoc.module.generate">module generate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.generate.generate" id="apidoc.element.generate.generate">
+        function <span class="apidocSignatureSpan"></span>generate
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Generate(options) {
+  if (!(this instanceof Generate)) {
+    return new Generate(options);
+  }
+
+  Assemble.call(this, options);
+  this.is(&#x27;generate&#x27;);
+  this.initGenerate(this.options);
+
+  if (!setArgs) {
+    setArgs = true;
+    this.base.option(utils.argv);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      var arr = tasks(app, ctx, argv);
+      app.log.success(&#x27;running tasks:&#x27;, arr);
+
+      if (ctx.env.configPath) {
+        app = app.generator(&#x27;default&#x27;, require(ctx.env.configPath));
+      }
+
+      app.<span class="apidocCodeKeywordSpan">generate</span>(arr, function(err) {
+        if (err) return handleErr(app, err);
+      });
+    });
+  });
+});
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.handleErr" id="apidoc.element.generate.handleErr">
+        function <span class="apidocSignatureSpan">generate.</span>handleErr
+        <span class="apidocSignatureSpan">(app, err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleErr = function (app, err) {
+  if (!(err instanceof Error)) {
+    err = new Error(err.toString());
+  }
+
+  if (utils.isObject(app) &#x26;&#x26; app.isApp) {
+    if (app.options.verbose) {
+      err = err.stack;
+    }
+
+    if (app.hasListeners(&#x27;error&#x27;)) {
+      app.emit(&#x27;error&#x27;, err);
+    } else {
+      throw err;
+    }
+  } else {
+    throw err;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Temporary error handler method. until we implement better errors.
+ *
+ * @param {Object} `err` Object or instance of `Error`.
+ * @return {Object} Returns an error object, or emits `error` if a listener exists.
+ */
+
+Generate.prototype.handleErr = function(err) {
+  return Generate.<span class="apidocCodeKeywordSpan">handleErr</span>(this, err);
+};
+
+/**
+ * Add static methods
+ */
+
+mixins(Generate);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.initGenerateCLI" id="apidoc.element.generate.initGenerateCLI">
+        function <span class="apidocSignatureSpan">generate.</span>initGenerateCLI
+        <span class="apidocSignatureSpan">(app, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initGenerateCLI = function (app, options) {
+  var opts = {globals: this.globals, store: this.store};
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.logger());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.loader());
+  app.use(plugins.npm());
+  app.use(plugins.prompt());
+
+  // built-in view collections
+  app.create(&#x27;templates&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ // load middleware
+ if (!process.env.GENERATE_TEST) {
+   Generate.initGenerateMiddleware(this);
+ }
+
+ // load CLI plugins
+ if (utils.runnerEnabled(this)) {
+   this.<span class="apidocCodeKeywordSpan">initGenerateCLI</span>(opts);
+ }
+ Generate.emit(&#x27;generate.postInit&#x27;, this);
+};
+
+/**
+* Initialize CLI-specific plugins and view collections.
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.initGenerateListeners" id="apidoc.element.generate.initGenerateListeners">
+        function <span class="apidocSignatureSpan">generate.</span>initGenerateListeners
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initGenerateListeners = function (app) {
+  function logger() {
+    if (utils.argv.silent || app.options.silent) return;
+    console.log.apply(console, arguments);
+  }
+
+  app.on(&#x27;build&#x27;, function(event, build) {
+    if (build &#x26;&#x26; event === &#x27;starting&#x27; || event === &#x27;finished&#x27;) {
+      if (build.isSilent) return;
+      var prefix = event === &#x27;finished&#x27; ? utils.log.success + &#x27; &#x27; : &#x27;&#x27;;
+      var key = build.key.replace(/generate\./, &#x27;&#x27;);
+      logger(utils.log.timestamp, event, key, prefix + utils.log.red(build.time));
+    }
+  });
+
+  app.on(&#x27;task&#x27;, function(event, task) {
+    if (task &#x26;&#x26; task.app) {
+      task.app.cwd = app.base.cwd;
+    }
+    if (task &#x26;&#x26; event === &#x27;starting&#x27; || event === &#x27;finished&#x27;) {
+      if (task.isSilent) return;
+      var key = task.key.replace(/generate\./, &#x27;&#x27;);
+      logger(utils.log.timestamp, event, key, utils.log.red(task.time));
+    }
+  });
+
+  app.on(&#x27;task:starting&#x27;, function(event, task) {
+    if (task &#x26;&#x26; task.app) task.app.cwd = app.base.cwd;
+  });
+
+  app.on(&#x27;option&#x27;, function(key, val) {
+    if (key === &#x27;dest&#x27;) {
+      app.base.cwd = val;
+      app.cwd = val;
+      app.data(&#x27;dest&#x27;, val);
+    }
+  });
+
+  app.on(&#x27;generator&#x27;, function(generator) {
+    generator.data(&#x27;alias&#x27;, generator.env.alias || generator.cache.data.alias);
+  });
+
+  app.on(&#x27;ask&#x27;, function(val, key, question, answers) {
+    if (typeof val === &#x27;undefined&#x27;) {
+      val = question.default;
+    }
+    if (typeof val === &#x27;undefined&#x27;) {
+      val = question.default = app.cache.answers[key] || app.common.get(key);
+    }
+    if (typeof val !== &#x27;undefined&#x27;) {
+      app.base.data(key, val);
+    }
+  });
+
+  app.on(&#x27;unresolved&#x27;, function(search, app) {
+    if (!/(verb-)?generate-/.test(search.name)) return;
+    var opts = {cwd: utils.gm};
+    var resolved = utils.resolve.file(search.name) || utils.resolve.file(search.name, opts);
+    if (resolved) {
+      search.app = app.register(search.name, require(resolved.path));
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+debug(&#x27;initializing from &#x3c;%s&#x3e;&#x27;, __filename);
+Generate.emit(&#x27;generate.preInit&#x27;, this);
+
+// initialize defaults
+defaults(Generate, this);
+
+// load listeners
+Generate.<span class="apidocCodeKeywordSpan">initGenerateListeners</span>(this);
+
+// load middleware
+if (!process.env.GENERATE_TEST) {
+  Generate.initGenerateMiddleware(this);
+}
+
+// load CLI plugins
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.initGenerateMiddleware" id="apidoc.element.generate.initGenerateMiddleware">
+        function <span class="apidocSignatureSpan">generate.</span>initGenerateMiddleware
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initGenerateMiddleware = function (app) {
+  app.preWrite(/./, function(view, next) {
+    var askName = view.data &#x26;&#x26; view.data.ask;
+    var hint = view.basename;
+    if (utils.isObject(askName)) {
+      var obj = askName;
+      hint = obj.default || hint;
+      askName = obj.rename;
+    }
+
+    function setValue(obj) {
+      var key = askName;
+      var val = obj[key];
+      if (val) view[key] = val;
+      if (key === &#x27;path&#x27;) {
+        view.base = path.dirname(view.path);
+        app.options.dest = view.base;
+      }
+    }
+
+    if (typeof askName === &#x27;string&#x27;) {
+      if (utils.argv[askName]) {
+        setValue(utils.argv);
+        next();
+        return;
+      }
+
+      app.question(askName, `What is the file.${askName}?`, {default: hint});
+      app.askWhen(askName, {save: false}, function(err, answers) {
+        if (err) return next(err);
+        if (answers[askName]) {
+          setValue(answers);
+        }
+        next();
+      });
+    } else {
+      next();
+    }
+  });
+
+  app.onLoad(/(^|[\\\/])templates[\\\/]/, function(file, next) {
+    var userDefined = app.home(&#x27;templates&#x27;, file.relative);
+    if (utils.exists(userDefined)) {
+      file.contents = fs.readFileSync(userDefined);
+    } else {
+      userDefined = app.home(&#x27;templates&#x27;, file.basename)
+      if (utils.exists(userDefined)) {
+        file.contents = fs.readFileSync(userDefined);
+      }
+    }
+    if (/^templates[\\\/]/.test(file.relative)) {
+      file.path = path.join(app.cwd, file.basename);
+    }
+    next(null, file);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+defaults(Generate, this);
+
+// load listeners
+Generate.initGenerateListeners(this);
+
+// load middleware
+if (!process.env.GENERATE_TEST) {
+  Generate.<span class="apidocCodeKeywordSpan">initGenerateMiddleware</span>(this);
+}
+
+// load CLI plugins
+if (utils.runnerEnabled(this)) {
+  this.initGenerateCLI(opts);
+}
+Generate.emit(&#x27;generate.postInit&#x27;, this);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.lookup" id="apidoc.element.generate.lookup">
+        function <span class="apidocSignatureSpan">generate.</span>lookup
+        <span class="apidocSignatureSpan">(key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lookup = function (key) {
+  if (!/generate-/.test(key) &#x26;&#x26; key !== &#x27;default&#x27;) {
+    return [`generate-${key}`];
+  }
+  return [key];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins" id="apidoc.element.generate.plugins">
+        function <span class="apidocSignatureSpan">generate.</span>plugins
+        <span class="apidocSignatureSpan">(name, alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function proxy(name, alias) {
+  var key = alias;
+
+  // camel-case the module `name` if `alias` is not defined
+  if (typeof key !== &#x27;string&#x27;) {
+    key = camelcase(name);
+  }
+
+  // create a getter to lazily invoke the module the first time it&#x27;s called
+  function getter() {
+    return cache[key] || (cache[key] = requireFn(name));
+  }
+
+  // trip the getter if `process.env.UNLAZY` is defined
+  if (unlazy(process.env)) {
+    getter();
+  }
+
+  set(proxy, key, getter);
+  return getter;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils" id="apidoc.element.generate.utils">
+        function <span class="apidocSignatureSpan">generate.</span>utils
+        <span class="apidocSignatureSpan">(name, alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function proxy(name, alias) {
+  var key = alias;
+
+  // camel-case the module `name` if `alias` is not defined
+  if (typeof key !== &#x27;string&#x27;) {
+    key = camelcase(name);
+  }
+
+  // create a getter to lazily invoke the module the first time it&#x27;s called
+  function getter() {
+    return cache[key] || (cache[key] = requireFn(name));
+  }
+
+  // trip the getter if `process.env.UNLAZY` is defined
+  if (unlazy(process.env)) {
+    getter();
+  }
+
+  set(proxy, key, getter);
+  return getter;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.generate.plugins" id="apidoc.module.generate.plugins">module generate.plugins</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.plugins" id="apidoc.element.generate.plugins.plugins">
+        function <span class="apidocSignatureSpan">generate.</span>plugins
+        <span class="apidocSignatureSpan">(name, alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function proxy(name, alias) {
+  var key = alias;
+
+  // camel-case the module `name` if `alias` is not defined
+  if (typeof key !== &#x27;string&#x27;) {
+    key = camelcase(name);
+  }
+
+  // create a getter to lazily invoke the module the first time it&#x27;s called
+  function getter() {
+    return cache[key] || (cache[key] = requireFn(name));
+  }
+
+  // trip the getter if `process.env.UNLAZY` is defined
+  if (unlazy(process.env)) {
+    getter();
+  }
+
+  set(proxy, key, getter);
+  return getter;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.conflicts" id="apidoc.element.generate.plugins.conflicts">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>conflicts
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">conflicts = function (config) {
+  return function(app) {
+    var actions = {};
+
+    this.define(&#x27;conflicts&#x27;, function(dest, options) {
+      if (typeof dest !== &#x27;string&#x27;) {
+        throw new TypeError(&#x27;expected dest to be a string&#x27;);
+      }
+
+      if (!(&#x27;cwd&#x27; in app)) {
+        app.use(utils.cwd());
+      }
+
+      var opts = utils.extend({}, config, this.options, options);
+      var emitter = Emitter({});
+      var files = [];
+
+      emitter.detectConflicts = detectConflicts(emitter, files, actions, opts);
+
+      return utils.through.obj(function(file, enc, next) {
+        if (file.isNull() || (file.stat &#x26;&#x26; file.stat.isDirectory())) {
+          next();
+          return;
+        }
+
+        file.dest = typeof dest === &#x27;function&#x27;
+          ? dest(file)
+          : dest;
+
+        emitter.detectConflicts(file, next);
+      }, function(next) {
+        var self = this;
+        files.forEach(function(file) {
+          self.push(file);
+        });
+        next();
+      });
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    cb = dest;
+    dest = null;
+  }
+
+  dest = dest || app.option(&#x27;dest&#x27;) || &#x27;&#x27;;
+  app.src(name, {cwd: templates})
+    .pipe(app.renderFile(&#x27;*&#x27;))
+    .pipe(app.<span class="apidocCodeKeywordSpan">conflicts</span>(dest))
+    .pipe(app.dest(dest))
+    .on(&#x27;error&#x27;, cb)
+    .on(&#x27;end&#x27;, cb);
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.dest" id="apidoc.element.generate.plugins.dest">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>dest
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">dest = function (options) {
+  return function(app) {
+    var dest = this.dest;
+
+    this.define(&#x27;dest&#x27;, function(dir, options) {
+      var opts = utils.extend({ cwd: this.cwd }, options);
+      if (typeof dir !== &#x27;function&#x27; &#x26;&#x26; typeof this.rename === &#x27;function&#x27;) {
+        dir = this.rename(dir);
+      }
+      return dest.call(this, dir, opts);
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Generate an `assemblefile.js`
+ */
+
+app.task(&#x27;new&#x27;, function(cb) {
+  app.src(&#x27;templates/generator.js&#x27;, {cwd: __dirname})
+    .pipe(app.<span class="apidocCodeKeywordSpan">dest</span>(app.options.dest || app.cwd))
+    .on(&#x27;end&#x27;, function() {
+      console.log(utils.log.timestamp, &#x27;created generator.js&#x27;);
+      cb();
+    });
+});
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.destPath" id="apidoc.element.generate.plugins.destPath">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>destPath
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">destPath = function (options) {
+  return function() {
+    Object.defineProperty(this, &#x27;destBase&#x27;, {
+      configurable: true,
+      enumerable: true,
+      set: function(dest) {
+        this.cache.dest = path.resolve(dest);
+      },
+      get: function() {
+        if (typeof this.cache.dest === &#x27;string&#x27;) {
+          return path.resolve(this.cache.dest);
+        }
+        if (typeof this.options.dest === &#x27;string&#x27;) {
+          return path.resolve(this.options.dest);
+        }
+        return process.cwd();
+      }
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.generators" id="apidoc.element.generate.plugins.generators">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>generators
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generators = function (config) {
+  config = config || {};
+
+  return function plugin(app) {
+    if (!utils.isValid(app, &#x27;base-generators&#x27;)) return;
+
+    this.isGenerator = true;
+    this.generators = {};
+    var cache = {};
+
+    this.define(&#x27;constructor&#x27;, this.constructor);
+    this.use(plugins());
+    this.fns.push(plugin);
+
+<span class="apidocCodeCommentSpan">    /**
+     * Add methods to `app` (instance of Base)
+     */
+</span>
+    this.define({
+
+      /**
+       * Alias to `.setGenerator`.
+       *
+       * ```js
+       * app.register(&#x27;foo&#x27;, function(app, base) {
+       *   // &#x22;app&#x22; is a private instance created for the generator
+       *   // &#x22;base&#x22; is a shared instance
+       * });
+       * ```
+       * @name .register
+       * @param {String} `name` The generator&#x27;s name
+       * @param {Object|Function|String} `options` or generator
+       * @param {Object|Function|String} `generator` Generator function, instance or filepath.
+       * @return {Object} Returns the generator instance.
+       * @api public
+       */
+
+      register: function(name, options, generator) {
+        return this.setGenerator.apply(this, arguments);
+      },
+
+      /**
+       * Get and invoke generator `name`, or register generator `name` with
+       * the given `val` and `options`, then invoke and return the generator
+       * instance. This method differs from `.register`, which lazily invokes
+       * generator functions when `.generate` is called.
+       *
+       * ```js
+       * app.generator(&#x27;foo&#x27;, function(app, base, env, options) {
+       *   // &#x22;app&#x22; - private instance created for generator &#x22;foo&#x22;
+       *   // &#x22;base&#x22; - instance shared by all generators
+       *   // &#x22;env&#x22; - environment object for the generator
+       *   // &#x22;options&#x22; - options passed to the generator
+       * });
+       * ```
+       * @name .generator
+       * @param {String} `name`
+       * @param {Function|Object} `fn` Generator function, instance or filepath.
+       * @return {Object} Returns the generator instance or undefined if not resolved.
+       * @api public
+       */
+
+      generator: function(name, val, options) {
+        debug(&#x27;.generator&#x27;, name, val);
+
+        if (this.hasGenerator(name)) {
+          return this.getGenerator(name);
+        }
+
+        this.setGenerator.apply(this, arguments);
+        return this.getGenerator(name);
+      },
+
+      /**
+       * Store a generator by file path or instance with the given
+       * `name` and `options`.
+       *
+       * ```js
+       * app.setGenerator(&#x27;foo&#x27;, function(app, base) {
+       *   // &#x22;app&#x22; - private instance created for generator &#x22;foo&#x22;
+       *   // &#x22;base&#x22; - instance shared by all generators
+       *   // &#x22;env&#x22; - environment object for the generator
+       *   // &#x22;options&#x22; - options passed to the generator
+       * });
+       * ```
+       * @name .setGenerator
+       * @param {String} `name` The generator&#x27;s name
+       * @param {Object|Function|String} `options` or generator
+       * @param {Object|Function|String} `generator` Generator function, instance or filepath.
+       * @return {Object} Returns the generator instance.
+       * @api public
+       */
+
+      setGenerator: function(name, val, options) {
+        debug(&#x27;.setGenerator&#x27;, name);
+
+        if (this.hasGenerator(name)) {
+          return this.findGenerator(name);
+        }
+
+        // ensure local sub-generator paths are resolved
+        if (typeof val === &#x27;string&#x27; &#x26;&#x26; val.charAt(0) === &#x27;.&#x27; &#x26;&#x26; this.env) {
+          val = path.resolve(this.env.dirname, val);
+        }
+
+        return generator(name, val, options, this);
+      },
+
+      /**
+       * Get generator `name` from `app.generators`, same as [findGenerator], but also invokes
+       * the returned generator with the current instance. Dot-notation may be used for getting
+       * sub-generators.
+       *
+       * ```js
+       * var foo = app.getGenerator(&#x27;foo&#x27;);
+       *
+       * // get a sub-generator
+       * var baz = app.getGenerator(&#x27;foo.bar.baz&#x27;);
+       * ```
+       * @name .getGenerator
+       * @param {String} `name` Generator name.
+       * @return {Object|undefined} Returns the generator instance or undefined.
+       * @api pub ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  });
+
+  // register async `ask` helper
+  app.asyncHelper(&#x27;ask&#x27;, utils.ask(app));
+
+  // load plugins
+  app.use(plugins.store(&#x27;generate&#x27;));
+  app.use(plugins.<span class="apidocCodeKeywordSpan">generators</span>());
+  app.use(plugins.pipeline());
+  app.use(utils.askWhen());
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.loader" id="apidoc.element.generate.plugins.loader">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>loader
+        <span class="apidocSignatureSpan">(patterns, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function loader(patterns, config) {
+  if (utils.isObject(patterns)) {
+    config = patterns;
+    patterns = undefined;
+  }
+
+  return function plugin(app) {
+    if (utils.isRegistered(app, &#x27;assemble-loader&#x27;)) {
+      return plugin;
+    }
+
+    if (utils.isValidInstance(app)) {
+      appLoader(this, config);
+    }
+
+    if (utils.isValidInstance(app, [&#x27;views&#x27;, &#x27;items&#x27;, &#x27;collection&#x27;])) {
+      collectionLoader(this, config);
+    }
+
+    if (utils.isValidGlob(patterns)) {
+      return viewLoader(app, config, patterns);
+    }
+
+    return plugin;
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var opts = {globals: this.globals, store: this.store};
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.logger());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.<span class="apidocCodeKeywordSpan">loader</span>());
+  app.use(plugins.npm());
+  app.use(plugins.prompt());
+
+  // built-in view collections
+  app.create(&#x27;templates&#x27;);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.logger" id="apidoc.element.generate.plugins.logger">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>logger
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">logger = function (options) {
+  return function() {
+
+    function logger(prop, color) {
+      color = color || &#x27;dim&#x27;;
+      return function(msg) {
+        var rest = [].slice.call(arguments, 1);
+        return console.log
+          .bind(console, utils.log.timestamp + (prop ? (&#x27; &#x27; + utils.log[prop]) : &#x27;&#x27;))
+          .apply(console, [utils.log[color](msg)].concat(rest));
+      };
+    };
+
+    Object.defineProperty(this, &#x27;log&#x27;, {
+      configurable: true,
+      get: function() {
+        function log() {
+          return console.log.apply(console, arguments);
+        }
+        log.path = function(msg) {
+          return logger(null, &#x27;dim&#x27;).apply(null, arguments);
+        };
+        log.time = function(msg) {
+          return logger(null, &#x27;dim&#x27;).apply(null, arguments);
+        };
+        log.warn = function(msg) {
+          return logger(&#x27;warning&#x27;).apply(null, arguments);
+        };
+        log.warning = function(msg) {
+          return logger(&#x27;warning&#x27;, &#x27;yellow&#x27;).apply(null, arguments);
+        };
+        log.success = function() {
+          return logger(&#x27;success&#x27;, &#x27;green&#x27;).apply(null, arguments);
+        };
+        log.info = function() {
+          return logger(&#x27;info&#x27;, &#x27;cyan&#x27;).apply(null, arguments);
+        };
+        log.error = function() {
+          return logger(&#x27;error&#x27;, &#x27;red&#x27;).apply(null, arguments);
+        };
+        log.__proto__ = utils.log;
+        return log;
+      }
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Initialize plugins for CLI
+ */
+
+Generate.initGenerateCLI = function(app, options) {
+  var opts = {globals: this.globals, store: this.store};
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.<span class="apidocCodeKeywordSpan">logger</span>());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.loader());
+  app.use(plugins.npm());
+  app.use(plugins.prompt());
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.npm" id="apidoc.element.generate.plugins.npm">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>npm
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">npm = function (options) {
+  return function(app) {
+    if (!isValid(app, &#x27;base-npm&#x27;)) return;
+
+<span class="apidocCodeCommentSpan">    /**
+     * Execute `npm install` with the given `args`, package `names`
+     * and callback.
+     *
+     * ```js
+     * app.npm(&#x27;--save&#x27;, [&#x27;isobject&#x27;], function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm
+     * @param {String|Array} `args`
+     * @param {String|Array} `names`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+</span>
+    this.define(&#x27;npm&#x27;, npm);
+    function npm(cmds, args, cb) {
+      var cwd = app.cwd || process.cwd();
+      args = arrayify(cmds).concat(arrayify(args));
+      spawn(&#x27;npm&#x27;, args, {cwd: cwd, stdio: &#x27;inherit&#x27;})
+        .on(&#x27;error&#x27;, cb)
+        .on(&#x27;close&#x27;, function(code, err) {
+          cb(err, code);
+        });
+    };
+
+    /**
+     * Install one or more packages. Does not save anything to
+     * package.json. Equivalent of `npm install foo`.
+     *
+     * ```js
+     * app.npm.install(&#x27;isobject&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.install
+     * @param {String|Array} `names` package names
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    npm.install = function(args, cb) {
+      npm(&#x27;install&#x27;, args, cb);
+    };
+
+    /**
+     * (Re-)install and save the latest version of all `dependencies`
+     * and `devDependencies` currently listed in package.json.
+     *
+     * ```js
+     * app.npm.latest(function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.latest
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    npm.latest = function(names, cb) {
+      if (typeof names !== &#x27;function&#x27;) {
+        npm.install(latest(names), cb);
+        return;
+      }
+
+      if (typeof names === &#x27;function&#x27;) {
+        cb = names;
+      }
+
+      var devDeps = latest(pkg(app, &#x27;devDependencies&#x27;));
+      var deps = latest(pkg(app, &#x27;dependencies&#x27;));
+
+      npm.dependencies(deps, function(err) {
+        if (err) return cb(err);
+        npm.devDependencies(devDeps, cb);
+      });
+    };
+
+    /**
+     * Execute `npm install --save` with one or more package `names`.
+     * Updates `dependencies` in package.json.
+     *
+     * ```js
+     * app.npm.dependencies(&#x27;micromatch&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.dependencies
+     * @param {String|Array} `names`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    npm.dependencies = function(names, cb) {
+      var args = [].concat.apply([], [].slice.call(arguments));
+      cb = args.pop();
+
+      if (args.length === 0) {
+        args = pkg(app, &#x27;dependencies&#x27;);
+      }
+
+      if (!args.length) {
+        cb();
+        return;
+      }
+      npm.install([&#x27;--save&#x27;].concat(args), cb);
+    };
+
+    /**
+     * Execute `npm install --save-dev` with one or more package `names`.
+     * Updates `devDependencies` in package.json.
+     *
+     * ```js
+     * app.npm.devDependencies(&#x27;isobject&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.devDependencies
+     * @param {String|Array} `names`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    npm.devDependencies = function(names, cb) {
+      var args = [].concat.apply([], [].slice.call(arguments));
+      cb = args.pop();
+
+      if (args.length === 0) {
+        args = pkg(app, &#x27;devDependencies&#x27;);
+      }
+
+      if (!args.length) {
+        cb();
+        return;
+      }
+      npm.install([&#x27;--save-dev&#x27;].concat(args), cb);
+    };
+
+    /**
+     * Execute `npm install --global` with one or more package `names`.
+     *
+     * ```js
+     * app.npm.global(&#x27;mocha&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.global
+     * @param  {String|Array} `names`
+     * @param  {Function} `cb` Callback
+     * @api public
+     */
+    npm.global = function(names, cb) {
+      var args = [].concat.apply([], [].slice.call(arguments));
+      cb = args.pop();
+
+      if (!args.length) {
+        cb();
+        return;
+      }
+      npm.install([&#x27;--global&#x27;].concat(a ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.logger());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.loader());
+  app.use(plugins.<span class="apidocCodeKeywordSpan">npm</span>());
+  app.use(plugins.prompt());
+
+  // built-in view collections
+  app.create(&#x27;templates&#x27;);
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.pipeline" id="apidoc.element.generate.plugins.pipeline">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>pipeline
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">pipeline = function (options) {
+  return function fn(app) {
+    plugin(options).call(this, app);
+    if (this.isApp) {
+      return fn;
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // register async `ask` helper
+  app.asyncHelper(&#x27;ask&#x27;, utils.ask(app));
+
+  // load plugins
+  app.use(plugins.store(&#x27;generate&#x27;));
+  app.use(plugins.generators());
+  app.use(plugins.<span class="apidocCodeKeywordSpan">pipeline</span>());
+  app.use(utils.askWhen());
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.prompt" id="apidoc.element.generate.plugins.prompt">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>prompt
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">prompt = function (config) {
+  return function(app) {
+    if (!utils.isValid(app, &#x27;base-npm-prompt&#x27;)) {
+      return;
+    }
+
+    if (typeof app.npm === &#x27;undefined&#x27;) {
+      throw new Error(&#x27;expected the base-npm plugin to be registered&#x27;);
+    }
+
+    var npm = app.npm;
+
+<span class="apidocCodeCommentSpan">    /**
+     * Prompts the user to ask if they want to install the packages listed on
+     * `app.cache.install.dependencies` or `app.cache.install.devDependencies` based on
+     * the given `type`.
+     *
+     * ```js
+     * app.npm.prompt(&#x27;dependencies&#x27;, function(err) {
+     *   if (err) return console.error(err):
+     * });
+     * ```
+     * @name .npm.prompt
+     * @param {String} `type` dependency type to install (dependencies or devDependencies)
+     * @param {Object} `options`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+</span>
+    utils.define(npm, &#x27;prompt&#x27;, function(type, options, cb) {
+      if (typeof options === &#x27;function&#x27;) {
+        cb = options;
+        options = {};
+      }
+
+      var opts = utils.extend({type: type}, options);
+      install(opts, cb);
+    });
+
+    /**
+     * Prompts the user to ask if they want to install the given package(s).
+     * Requires the [base-questions][] plugin to be registered first.
+     *
+     * ```js
+     * app.npm.askInstall(&#x27;isobject&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.askInstall
+     * @param {String|Array} `names` One or more package names.
+     * @param {Object} `options`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    utils.define(npm, &#x27;askInstall&#x27;, function(names, options, cb) {
+      install(names, options, cb);
+    });
+
+    /**
+     * Prompts the user to ask if they want to check if the given package(s)
+     * exist on npm, then install the ones that do exist.
+     * Requires the [base-questions][] plugin to be registered first.
+     *
+     * ```js
+     * app.npm.checkInstall(&#x27;isobject&#x27;, function(err) {
+     *   if (err) throw err;
+     * });
+     * ```
+     * @name .npm.checkInstall
+     * @param {String|Array} `names` One or more package names.
+     * @param {Object} `options`
+     * @param {Function} `cb` Callback
+     * @api public
+     */
+
+    utils.define(npm, &#x27;checkInstall&#x27;, function(names, options, cb) {
+      if (typeof names !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(names)) {
+        npm.checkInstall([], names, options);
+        return;
+      }
+
+      if (typeof options === &#x27;function&#x27;) {
+        cb = options;
+        options = {};
+      }
+
+      // setup options specific for `checkInstall` to
+      // show a different message and check the modules exist before installing.
+      var opts = utils.extend({
+        namespace: &#x27;base-npm-check-install-&#x27;,
+        message: function(names, type) {
+          var target = names.length &#x3e; 1 ? type : `&#x22;${names[0]}&#x22; to &#x22;${type}&#x22;`;
+          return `Would you like to check for and install ${target}?`;
+        },
+        handleAnswer: function(type, answer, cb) {
+          npm.exists(answer, function(err, exists) {
+            if (err) return cb(err);
+
+            utils.each(Object.keys(exists), function(key, next) {
+              if (exists[key]) {
+                console.log(utils.log.green(utils.log.success), key);
+              } else {
+                console.log(utils.log.red(utils.log.error), key);
+              }
+              if (exists[key] === false) return next();
+              npm[type](key, next);
+            }, cb);
+          });
+        }
+      }, options);
+
+      // run the actual ask and install method
+      install(names, opts, cb);
+    });
+
+    /**
+     * Does the actual ask and installing based on the options passed in.
+     * Default logic is the original `askInstall` logic.
+     *
+     * @param  {String|Array} `names` One or more package names.
+     * @param  {Object} `options`
+     * @param  {Function} `cb` Callback
+     */
+
+    function install(names, options, cb) {
+      if (typeof names !== &#x27;string&#x27; &#x26;&#x26; !Array.isArray(names)) {
+        install([], names, options);
+        return;
+      }
+
+      if (typeof options === &#x27;function&#x27;) {
+        cb = options;
+        opt ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  app.use(plugins.logger());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.loader());
+  app.use(plugins.npm());
+  app.use(plugins.<span class="apidocCodeKeywordSpan">prompt</span>());
+
+  // built-in view collections
+  app.create(&#x27;templates&#x27;);
+};
+
+/**
+ * Initialize listeners
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.questions" id="apidoc.element.generate.plugins.questions">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>questions
+        <span class="apidocSignatureSpan">(config, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">questions = function (config, fn) {
+  return function plugin(app) {
+    if (!utils.isValid(app, &#x27;base-questions&#x27;)) return;
+    debug(&#x27;initializing from &#x3c;%s&#x3e;&#x27;, __filename);
+
+    this.define(&#x27;Questions&#x27;, this.options.questions || utils.Questions);
+    app.cache.answers = app.cache.answers || {};
+
+<span class="apidocCodeCommentSpan">    /**
+     * Events
+     */
+</span>
+    this.on(&#x27;ask&#x27;, function(val, key, question, answers) {
+      var data = utils.merge({}, answers, app.store.data, app.cache.answers, app.cache.data);
+      if (app.option(&#x27;common-config&#x27;) !== false) {
+        data = utils.merge({}, app.questions.common.data, data);
+      }
+      var answer = utils.get(data, key);
+      if (answer) {
+        utils.set(answers, key, answer);
+      }
+    });
+
+    this.on(&#x27;answer&#x27;, function(val, key, question, answers) {
+      app.base.data(key, val);
+      app.data(key, val);
+    });
+
+    /**
+     * Decorate the `questions` instance onto `app` and lazily
+     * invoke the `question-store` lib when a questions related
+     * method is called.
+     */
+
+    utils.sync(this, &#x27;questions&#x27;, function fn() {
+      if (typeof app.store === &#x27;undefined&#x27;) {
+        this.use(utils.store());
+      }
+
+      // return cached instance
+      if (fn._questions) return fn._questions;
+
+      var cwd = app.cwd || process.cwd();
+      var opts = utils.merge({}, app.options, config);
+      opts.data = app.cache.data || {};
+      opts.cwd = cwd;
+
+      var Questions = app.Questions;
+      var questions = new Questions(opts);
+      fn._questions = questions;
+      questions.cwd = cwd;
+
+      var data = questions.data;
+      questions.on(&#x27;ask&#x27;, app.emit.bind(app, &#x27;ask&#x27;));
+      questions.on(&#x27;answer&#x27;, app.emit.bind(app, &#x27;answer&#x27;));
+      questions.on(&#x27;error&#x27;, function(err) {
+        err.reason = &#x27;base-questions error&#x27;;
+        app.emit(&#x27;error&#x27;, err);
+      });
+
+      Object.defineProperty(questions, &#x27;data&#x27;, {
+        set: function(val) {
+          data = val;
+        },
+        get: function() {
+          data = utils.merge({}, data, opts.data);
+          return utils.clone(data);
+        }
+      });
+
+      return questions;
+    });
+
+    /**
+     * Create a `confirm` question.
+     *
+     * ```js
+     * app.confirm(&#x27;file&#x27;, &#x27;Want to generate a file?&#x27;);
+     *
+     * // equivalent to
+     * app.question({
+     *   name: &#x27;file&#x27;,
+     *   message: &#x27;Want to generate a file?&#x27;,
+     *   type: &#x27;confirm&#x27;
+     * });
+     * ```
+     * @name .confirm
+     * @param {String} `name` Question name
+     * @param {String} `msg` Question message
+     * @param {String|Array} `queue` Name or array of question names.
+     * @param {Object|Function} `options` Question options or callback function
+     * @param {Function} `callback` callback function
+     * @api public
+     */
+
+    this.define(&#x27;confirm&#x27;, function() {
+      this.questions.confirm.apply(this.questions, arguments);
+      return this.questions;
+    });
+
+    /**
+     * Create a &#x22;choices&#x22; question from an array.
+     *
+     * ```js
+     * app.choices(&#x27;color&#x27;, &#x27;Favorite color?&#x27;, [&#x27;blue&#x27;, &#x27;orange&#x27;, &#x27;green&#x27;]);
+     *
+     * // or
+     * app.choices(&#x27;color&#x27;, {
+     *   message: &#x27;Favorite color?&#x27;,
+     *   choices: [&#x27;blue&#x27;, &#x27;orange&#x27;, &#x27;green&#x27;]
+     * });
+     *
+     * // or
+     * app.choices({
+     *   name: &#x27;color&#x27;,
+     *   message: &#x27;Favorite color?&#x27;,
+     *   choices: [&#x27;blue&#x27;, &#x27;orange&#x27;, &#x27;green&#x27;]
+     * });
+     * ```
+     * @name .choices
+     * @param {String} `name` Question name
+     * @param {String} `msg` Question message
+     * @param {Array} `choices` Choice items
+     * @param {String|Array} `queue` Name or array of question names.
+     * @param {Object|Function} `options` Question options or callback function
+     * @param {Function} `callback` callback function
+     * @api public
+     */
+
+    this.define(&#x27;choices&#x27;, function() {
+      this.questions.choices.apply(this.questions, arguments);
+      return this.questions;
+    });
+
+    /**
+     * Add a question to be asked by the `.ask` method.
+     *
+     * ```js
+     * app.question(&#x27;beverage&#x27;, &#x27;What is your favorite beverage?&#x27;);
+     *
+     * // or
+     * app.question(&#x27;beverage&#x27;, {
+     *   type: &#x27;input&#x27;,
+     * ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Initialize plugins for CLI
+ */
+
+Generate.initGenerateCLI = function(app, options) {
+  var opts = {globals: this.globals, store: this.store};
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.logger());
+  app.use(plugins.<span class="apidocCodeKeywordSpan">questions</span>(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.runtimes(options));
+  app.use(plugins.loader());
+  app.use(plugins.npm());
+  app.use(plugins.prompt());
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.rename" id="apidoc.element.generate.plugins.rename">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>rename
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rename = function (config) {
+  return function plugin(app) {
+    if (!utils.isValid(app, &#x27;base-fs-rename&#x27;, [&#x27;app&#x27;, &#x27;collection&#x27;])) return;
+
+    this.define(&#x27;rename&#x27;, function(dest, params) {
+      if (typeof this.cwd !== &#x27;string&#x27;) {
+        this.use(utils.cwd());
+      }
+
+      if (typeof dest !== &#x27;string&#x27;) {
+        params = dest;
+        dest = null;
+      }
+
+      return function(file) {
+        var opts = utils.merge({}, app.options, config, params);
+        opts.cwd = path.resolve(opts.dest || app.cwd);
+        if (typeof dest === &#x27;string&#x27;) {
+          opts.cwd = path.resolve(opts.cwd, dest);
+        }
+
+        file.cwd = opts.cwd;
+        file.base = opts.cwd;
+
+        normalizeDir(opts);
+        normalizeExt(opts);
+
+        for (var key in opts) {
+          if (opts.hasOwnProperty(key) &#x26;&#x26; (key in file)) {
+            file[key] = opts[key];
+          }
+        }
+
+        if (typeof params === &#x27;string&#x27;) {
+          file.basename = params;
+        }
+
+        // replace leading non-word chars in the names of dotfile and config templates
+        if (file.basename &#x26;&#x26; opts.replace !== false) {
+          file.basename = file.basename.replace(/^_/, &#x27;.&#x27;).replace(/^\$/, &#x27;&#x27;);
+        }
+
+        file.path = path.resolve(file.base, file.basename);
+        return file.base;
+      };
+    });
+    return plugin;
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   */
+
+  Generate.initGenerateCLI = function(app, options) {
+var opts = {globals: this.globals, store: this.store};
+plugins.runner.loadPlugins(app);
+app.use(plugins.logger());
+app.use(plugins.questions(opts));
+app.use(plugins.<span class="apidocCodeKeywordSpan">rename</span>({replace: true}));
+app.use(plugins.conflicts(options));
+app.use(plugins.runtimes(options));
+app.use(plugins.loader());
+app.use(plugins.npm());
+app.use(plugins.prompt());
+
+// built-in view collections
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.runner" id="apidoc.element.generate.plugins.runner">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>runner
+        <span class="apidocSignatureSpan">(Ctor, config, argv, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function runner(Ctor, config, argv, cb) {
+  debug(&#x27;initializing &#x3c;%s&#x3e;, called from &#x3c;%s&#x3e;&#x27;, __filename, module.parent.id);
+
+<span class="apidocCodeCommentSpan">  /**
+   * handle runner arguments errors
+   */
+</span>
+  var err = validateRunnerArgs(Ctor, config, argv, cb);
+  if (err) {
+    cb(err);
+    return;
+  }
+
+  /**
+   * Shallow clone options
+   */
+
+  argv = utils.merge({_: []}, argv);
+  config = utils.merge({cwd: process.cwd(), extensions: {&#x27;.js&#x27;: null }}, config);
+  config.processTitle = config.processTitle || config.name;
+  config.moduleName = config.moduleName || config.name;
+  config.configName = config.configName || config.name + &#x27;file&#x27;;
+
+  /**
+   * Set cwd (if not defined)
+   *
+   *   $ verb --cwd=&#x22;lib&#x22;
+   *
+   */
+
+  if (typeof argv.cwd === &#x27;undefined&#x27;) {
+    argv.cwd = config.cwd;
+  }
+
+  /**
+   * Custom config file
+   *
+   *   $ verb --verbfile=&#x22;docs/foo.js&#x22;
+   *
+   */
+
+  var customFile = argv[config.configName];
+  if (customFile) {
+    argv.configPath = path.resolve(config.cwd, customFile);
+  }
+
+  /**
+   * Initialize liftoff
+   */
+
+  var CLI = new Liftoff(config);
+  utils.timestamp(&#x27;starting &#x27; + config.name);
+
+  /**
+   * Load environment
+   */
+
+  CLI.launch(argv, function(env) {
+    debug(&#x27;launching CLI&#x27;);
+
+    env.name = config.name;
+    env.configName = config.configName;
+    env.configFile = env.configName + &#x27;.js&#x27;;
+
+    var ctx = new RunnerContext(argv, config, env);
+    try {
+      var Base = env.modulePath ? require(env.modulePath) : Ctor;
+      ctx.Base = Base;
+
+      // get the instance to use
+      var base = new Base();
+      utils.merge(base.options, utils.merge({}, ctx.options, argv));
+      base.set(&#x27;cache.runnerContext&#x27;, ctx);
+
+      // load plugins
+      runner.loadPlugins(base);
+
+      // process `argv` and set on cache
+      base.set(&#x27;cache.argv&#x27;, base.argv(argv));
+      base.set(&#x27;cache.config&#x27;, ctx.pkgConfig);
+      base.set(&#x27;cache.env&#x27;, ctx);
+
+      // load local `[config]file.js` if one exists
+      runner.resolveConfig(base, config, env);
+      cb(null, base, ctx);
+    } catch (err) {
+      console.log(err.stack);
+      cb(err);
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+/**
+ * Initialize Runner
+ */
+
+var options = {name: &#x27;generate&#x27;, configName: &#x27;generator&#x27;};
+
+plugins.<span class="apidocCodeKeywordSpan">runner</span>(App, options, argv, function(err, app, runnerContext) {
+if (err) handleErr(app, err);
+
+app.set(&#x27;cache.runnerContext&#x27;, runnerContext);
+commands(app, runnerContext);
+
+if (!app.generators.defaults) {
+  app.register(&#x27;defaults&#x27;, require(&#x27;../lib/generator&#x27;));
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.runtimes" id="apidoc.element.generate.plugins.runtimes">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>runtimes
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">runtimes = function (config) {
+  config = config || {};
+
+  return function baseRuntimes(app) {
+    if (!utils.isValid(app, &#x27;base-runtimes&#x27;)) return;
+    var time = new utils.Time();
+    var log = utils.log;
+
+    this.on(&#x27;starting&#x27;, function(build) {
+      // create build context
+      var ctx = {app: build};
+      ctx.key = toKey(namespace(build));
+      ctx.event = &#x27;starting&#x27;;
+      time.start(ctx.key);
+      ctx.time = &#x27;&#x27;;
+      ctx.isBuild = true;
+      ctx.isSilent = silent(app, build, null);
+
+      if (app.hasListeners(&#x27;build&#x27;)) {
+        app.emit(&#x27;build&#x27;, ctx.event, ctx);
+      } else if (app.base.hasListeners(&#x27;build&#x27;)) {
+        app.base.emit(&#x27;build&#x27;, ctx.event, ctx);
+      } else if (!ctx.isSilent) {
+        console.error(log.timestamp, ctx.event, ctx.key, log.red(ctx.time));
+      }
+    });
+
+    this.on(&#x27;finished&#x27;, function(build, run) {
+      // create build context
+      var ctx = {app: build};
+      ctx.key = toKey(namespace(build));
+      ctx.time = time.end(ctx.key);
+      ctx.event = &#x27;finished&#x27;;
+      ctx.isBuild = true;
+      ctx.isSilent = silent(app, build, null);
+
+      if (app.hasListeners(&#x27;build&#x27;)) {
+        app.emit(&#x27;build&#x27;, ctx.event, ctx);
+      } else if (app.base.hasListeners(&#x27;build&#x27;)) {
+        app.base.emit(&#x27;build&#x27;, ctx.event, ctx);
+      } else if (!ctx.isSilent) {
+        console.error(log.timestamp, ctx.event, ctx.key, log.red(ctx.time));
+      }
+    });
+
+    this.on(&#x27;task:starting&#x27;, function(task) {
+      task.key = toKey(namespace(app), name(task) + &#x27; task&#x27;);
+      time.start(&#x27;task:&#x27; + task.key);
+      task.event = &#x27;starting&#x27;;
+      task.time = &#x27;&#x27;;
+      task.isTask = true;
+      task.isSilent = silent(app, null, task);
+
+      if (app.hasListeners(&#x27;task&#x27;)) {
+        app.emit(&#x27;task&#x27;, task.event, task);
+      } else if (app.base.hasListeners(&#x27;task&#x27;)) {
+        app.base.emit(&#x27;task&#x27;, task.event, task);
+      } else if (!task.isSilent) {
+        console.error(log.timestamp, task.event, task.key, log.red(task.time));
+      }
+    });
+
+    this.on(&#x27;task:finished&#x27;, function(task) {
+      task.key = toKey(namespace(app), name(task) + &#x27; task&#x27;);
+      task.time = time.end(&#x27;task:&#x27; + task.key);
+      task.event = &#x27;finished&#x27;;
+      task.isTask = true;
+      task.isSilent = silent(app, null, task);
+
+      if (app.hasListeners(&#x27;task&#x27;)) {
+        app.emit(&#x27;task&#x27;, task.event, task);
+      } else if (app.base.hasListeners(&#x27;task&#x27;)) {
+        app.base.emit(&#x27;task&#x27;, task.event, task);
+      } else if (!task.isSilent) {
+        console.error(log.timestamp, task.event, task.key, log.red(task.time));
+      }
+    });
+
+<span class="apidocCodeCommentSpan">    /**
+     * Handle toggling of verbose and silent modes
+     */
+</span>
+    function silent(app, build, task) {
+      var opts = utils.extend({}, app.base.options, app.options);
+
+      if (build &#x26;&#x26; build.options) {
+        opts = utils.extend({}, opts, build.options);
+      }
+      if (task &#x26;&#x26; task.options) {
+        opts = utils.extend({}, opts, task.options);
+      }
+
+      var verbose = opts.verbose;
+      var silent = opts.silent;
+
+      // handle `verbose` first
+      if (typeof verbose === &#x27;function&#x27;) {
+        return verbose(app, build, task);
+      }
+      if (verbose === true) {
+        return false;
+      }
+      if (task &#x26;&#x26; verbose === &#x27;tasks&#x27;) {
+        return false;
+      }
+      if (build &#x26;&#x26; verbose === &#x27;build&#x27;) {
+        return false;
+      }
+
+      // if not `verbose`, handle `silent`
+      if (typeof silent === &#x27;function&#x27;) {
+        return silent(app, build, task);
+      }
+      if (typeof silent === &#x27;string&#x27;) {
+        silent = [silent];
+      }
+
+      if (build &#x26;&#x26; Array.isArray(silent) &#x26;&#x26; isMatch(silent, build.alias)) {
+        return true;
+      }
+      if (task &#x26;&#x26; Array.isArray(silent) &#x26;&#x26; isMatch(silent, task.name)) {
+        return true;
+      }
+      if (silent === true) {
+        return true;
+      }
+    }
+
+    function name(task) {
+      return task.name || &#x27;&#x27;;
+    }
+
+    function namespace(build) {
+      return build.env ? build.env.namespace : (build.namespace || build._name);
+    }
+
+    function toKey(namespace, name) {
+      var res = &#x27;&#x27;;
+      if (namespace) {
+        namespace = formatN ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Generate.initGenerateCLI = function(app, options) {
+  var opts = {globals: this.globals, store: this.store};
+  plugins.runner.loadPlugins(app);
+  app.use(plugins.logger());
+  app.use(plugins.questions(opts));
+  app.use(plugins.rename({replace: true}));
+  app.use(plugins.conflicts(options));
+  app.use(plugins.<span class="apidocCodeKeywordSpan">runtimes</span>(options));
+  app.use(plugins.loader());
+  app.use(plugins.npm());
+  app.use(plugins.prompt());
+
+  // built-in view collections
+  app.create(&#x27;templates&#x27;);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.src" id="apidoc.element.generate.plugins.src">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>src
+        <span class="apidocSignatureSpan">(collection)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">src = function (collection) {
+  return function(app) {
+    collection = collection || &#x27;templates&#x27;;
+    var src = this.src;
+
+    this.define(&#x27;src&#x27;, function(patterns, options) {
+      var opts = utils.extend({}, options);
+      if (typeof opts.collection === &#x27;undefined&#x27;) {
+        opts.collection = collection;
+      }
+      return src.call(this, patterns, opts);
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+app.use(require(&#x27;generate-defaults&#x27;));
+
+/**
+ * Generate an `assemblefile.js`
+ */
+
+app.task(&#x27;new&#x27;, function(cb) {
+  app.<span class="apidocCodeKeywordSpan">src</span>(&#x27;templates/generator.js&#x27;, {cwd: __dirname})
+    .pipe(app.dest(app.options.dest || app.cwd))
+    .on(&#x27;end&#x27;, function() {
+      console.log(utils.log.timestamp, &#x27;created generator.js&#x27;);
+      cb();
+    });
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.store" id="apidoc.element.generate.plugins.store">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>store
+        <span class="apidocSignatureSpan">(name, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">store = function (name, config) {
+  if (typeof name !== &#x27;string&#x27;) {
+    config = name;
+    name = undefined;
+  }
+
+  return function plugin(app) {
+    if (!utils.isValid(app)) return;
+
+    // if `name` is not passed, get the project name
+    if (typeof name === &#x27;undefined&#x27;) {
+      name = utils.project(process.cwd());
+    }
+
+    var opts = utils.extend({}, config, app.options.store);
+    this.define(&#x27;store&#x27;, utils.store(name, opts));
+
+<span class="apidocCodeCommentSpan">    /**
+     * Bubble up a few events to `app`
+     */
+</span>
+    this.store.on(&#x27;set&#x27;, function(key, val) {
+      app.emit(&#x27;store.set&#x27;, key, val);
+      app.emit(&#x27;store&#x27;, &#x27;set&#x27;, key, val);
+    });
+
+    this.store.on(&#x27;get&#x27;, function(key, val) {
+      app.emit(&#x27;store.get&#x27;, key, val);
+      app.emit(&#x27;store&#x27;, &#x27;get&#x27;, key, val);
+    });
+
+    this.store.on(&#x27;del&#x27;, function(key, val) {
+      app.emit(&#x27;store.del&#x27;, key, val);
+      app.emit(&#x27;store&#x27;, &#x27;del&#x27;, key, val);
+    });
+
+    return plugin;
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  });
+
+  // register async `ask` helper
+  app.asyncHelper(&#x27;ask&#x27;, utils.ask(app));
+
+  // load plugins
+  app.use(plugins.<span class="apidocCodeKeywordSpan">store</span>(&#x27;generate&#x27;));
+  app.use(plugins.generators());
+  app.use(plugins.pipeline());
+  app.use(utils.askWhen());
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.plugins.stores" id="apidoc.element.generate.plugins.stores">
+        function <span class="apidocSignatureSpan">generate.plugins.</span>stores
+        <span class="apidocSignatureSpan">(proto)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stores = function (proto) {
+  // create `macros` store
+  Object.defineProperty(proto, &#x27;macros&#x27;, {
+    configurable: true,
+    set: function(val) {
+      stores.macros = val;
+    },
+    get: function() {
+      return stores.macros || (stores.macros = new utils.MacroStore({name: &#x27;generate-macros&#x27;}));
+    }
+  });
+
+  // create `app.globals` store
+  Object.defineProperty(proto, &#x27;globals&#x27;, {
+    configurable: true,
+    set: function(val) {
+      stores.globals = val;
+    },
+    get: function() {
+      return stores.globals || (stores.globals = new utils.Store(&#x27;generate-globals&#x27;));
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Assemble.extend(Generate);
+
+/**
+ * Initialize Stores
+ */
+
+plugins.<span class="apidocCodeKeywordSpan">stores</span>(Generate.prototype);
+
+/**
+ * Initialize generate defaults
+ */
+
+Generate.prototype.initGenerate = function(opts) {
+debug(&#x27;initializing from &#x3c;%s&#x3e;&#x27;, __filename);
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.generate.utils" id="apidoc.module.generate.utils">module generate.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.utils" id="apidoc.element.generate.utils.utils">
+        function <span class="apidocSignatureSpan">generate.</span>utils
+        <span class="apidocSignatureSpan">(name, alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function proxy(name, alias) {
+  var key = alias;
+
+  // camel-case the module `name` if `alias` is not defined
+  if (typeof key !== &#x27;string&#x27;) {
+    key = camelcase(name);
+  }
+
+  // create a getter to lazily invoke the module the first time it&#x27;s called
+  function getter() {
+    return cache[key] || (cache[key] = requireFn(name));
+  }
+
+  // trip the getter if `process.env.UNLAZY` is defined
+  if (unlazy(process.env)) {
+    getter();
+  }
+
+  set(proxy, key, getter);
+  return getter;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.Store" id="apidoc.element.generate.utils.Store">
+        function <span class="apidocSignatureSpan">generate.utils.</span>Store
+        <span class="apidocSignatureSpan">(name, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Store(name, options) {
+  if (!(this instanceof Store)) {
+    return new Store(name, options);
+  }
+
+  if (typeof name !== &#x27;string&#x27;) {
+    options = name;
+    name = null;
+  }
+
+  Base.call(this);
+  this.isStore = true;
+  this.options = options || {};
+  this.initStore(name);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ // create `app.globals` store
+ Object.defineProperty(proto, &#x27;globals&#x27;, {
+   configurable: true,
+   set: function(val) {
+     stores.globals = val;
+   },
+   get: function() {
+     return stores.globals || (stores.globals = new utils.<span class="apidocCodeKeywordSpan">Store</span>(&#x27;generate-globals
+&#x27;));
+   }
+ });
+};
+
+/**
+* Results the dest path to use
+*/
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.arrayify" id="apidoc.element.generate.utils.arrayify">
+        function <span class="apidocSignatureSpan">generate.utils.</span>arrayify
+        <span class="apidocSignatureSpan">(val)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">arrayify = function (val) {
+  return val ? (Array.isArray(val) ? val : [val]) : [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return file ? file.basename : path.basename(key);
+  };
+}
+return fn;
+};
+
+utils.getTasks = function(configFile, arrays) {
+arrays = utils.<span class="apidocCodeKeywordSpan">arrayify</span>(arrays);
+var tasks = [];
+
+if (configFile) {
+  tasks = utils.arrayify(arrays[0]);
+  return tasks.length &#x3e;= 1 ? tasks : [&#x27;default&#x27;];
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.ask" id="apidoc.element.generate.utils.ask">
+        function <span class="apidocSignatureSpan">generate.utils.</span>ask
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ask = function (app) {
+  debug(&#x27;initializing from &#x3c;%s&#x3e;&#x27;, __filename);
+  app.base.cache.answers = app.base.cache.answers || {};
+  var cached = {};
+
+  return function(name, message, options, cb) {
+    debug(&#x27;asking &#x3c;%s&#x3e;&#x27;, name);
+
+    var args = [].slice.call(arguments, 1);
+    cb = args.pop();
+
+    if (typeof cb !== &#x27;function&#x27;) {
+      throw new TypeError(&#x27;expected a callback function&#x27;);
+    }
+
+    var answer = getAnswer(app, cached, name);
+    if (typeof answer !== &#x27;undefined&#x27;) {
+      cb(null, answer);
+      return;
+    }
+
+    app = app || this.app;
+    var last = args[args.length - 1];
+    var opts = {};
+
+    if (isObject(last)) {
+      options = args.pop();
+    }
+
+    last = args[args.length - 1];
+    if (typeof last === &#x27;string&#x27;) {
+      opts.message = args.pop();
+    }
+
+    options = merge({}, this.options, options, opts);
+    options.data = merge({}, this.context, options.data);
+    options.save = false;
+
+    ask.when(this.app, name, options, function(err, answers) {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      var answer = get(answers, name);
+      cacheAnswer(app, cached, name, answer);
+      app.data(answers);
+      cb(null, answer);
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    },
+    get: function() {
+      return common || (common = utils.common);
+    }
+  });
+
+  // register async `ask` helper
+  app.asyncHelper(&#x27;ask&#x27;, utils.<span class="apidocCodeKeywordSpan">ask</span>(app));
+
+  // load plugins
+  app.use(plugins.store(&#x27;generate&#x27;));
+  app.use(plugins.generators());
+  app.use(plugins.pipeline());
+  app.use(utils.askWhen());
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.askWhen" id="apidoc.element.generate.utils.askWhen">
+        function <span class="apidocSignatureSpan">generate.utils.</span>askWhen
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">askWhen = function (options) {
+  return function(app) {
+    if (!isValid(app, &#x27;ask-when&#x27;)) return;
+
+    app.define(&#x27;askWhen&#x27;, function() {
+      if (typeof this.questions === &#x27;undefined&#x27;) {
+        throw new Error(&#x27;expected the base-questions plugin to be defined&#x27;);
+      }
+      return askWhen.bind(null, this).apply(null, arguments);
+    });
+
+    if (app.questions) {
+      app.questions.askWhen = app.askWhen.bind(app);
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // register async `ask` helper
+  app.asyncHelper(&#x27;ask&#x27;, utils.ask(app));
+
+  // load plugins
+  app.use(plugins.store(&#x27;generate&#x27;));
+  app.use(plugins.generators());
+  app.use(plugins.pipeline());
+  app.use(utils.<span class="apidocCodeKeywordSpan">askWhen</span>());
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.define" id="apidoc.element.generate.utils.define">
+        function <span class="apidocSignatureSpan">generate.utils.</span>define
+        <span class="apidocSignatureSpan">(obj, prop, val)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function defineProperty(obj, prop, val) {
+  if (typeof obj !== &#x27;object&#x27; &#x26;&#x26; typeof obj !== &#x27;function&#x27;) {
+    throw new TypeError(&#x27;expected an object or function.&#x27;);
+  }
+
+  if (typeof prop !== &#x27;string&#x27;) {
+    throw new TypeError(&#x27;expected `prop` to be a string.&#x27;);
+  }
+
+  if (isDescriptor(val) &#x26;&#x26; (&#x27;set&#x27; in val || &#x27;get&#x27; in val)) {
+    return Object.defineProperty(obj, prop, val);
+  }
+
+  return Object.defineProperty(obj, prop, {
+    configurable: true,
+    enumerable: false,
+    writable: true,
+    value: val
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var os = require(&#x27;os&#x27;);
+var path = require(&#x27;path&#x27;);
+var plugins = require(&#x27;./plugins&#x27;);
+var utils = require(&#x27;./utils&#x27;);
+
+module.exports = function(Generate, app) {
+var re = /^(base|generate|helper|updater|(assemble|verb)(?:-generate)?)-/;
+app.<span class="apidocCodeKeywordSpan">define</span>(&#x27;aliasRegex&#x27;, re);
+var common;
+
+app.cwd = app.options.dest || app.cwd;
+app.data(&#x27;dest&#x27;, app.cwd);
+
+// custom lookup function for resolving generators
+app.option(&#x27;lookup&#x27;, Generate.lookup);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.exists" id="apidoc.element.generate.utils.exists">
+        function <span class="apidocSignatureSpan">generate.utils.</span>exists
+        <span class="apidocSignatureSpan">(filepath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">exists = function (filepath) {
+  try {
+    (fs.accessSync || fs.statSync)(filepath);
+    return true;
+  } catch (err) {}
+  return false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  } else {
+    next();
+  }
+});
+
+app.onLoad(/(^|[\\\/])templates[\\\/]/, function(file, next) {
+  var userDefined = app.home(&#x27;templates&#x27;, file.relative);
+  if (utils.<span class="apidocCodeKeywordSpan">exists</span>(userDefined)) {
+    file.contents = fs.readFileSync(userDefined);
+  } else {
+    userDefined = app.home(&#x27;templates&#x27;, file.basename)
+    if (utils.exists(userDefined)) {
+      file.contents = fs.readFileSync(userDefined);
+    }
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.extend" id="apidoc.element.generate.utils.extend">
+        function <span class="apidocSignatureSpan">generate.utils.</span>extend
+        <span class="apidocSignatureSpan">(o)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function extend(o) {
+  if (!isObject(o)) { o = {}; }
+
+  var len = arguments.length;
+  for (var i = 1; i &#x3c; len; i++) {
+    var obj = arguments[i];
+
+    if (isObject(obj)) {
+      assign(o, obj);
+    }
+  }
+  return o;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+
+/**
+ * Extend `Generate`
+ */
+
+Assemble.<span class="apidocCodeKeywordSpan">extend</span>(Generate);
+
+/**
+ * Initialize Stores
+ */
+
+plugins.stores(Generate.prototype);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.firstIndex" id="apidoc.element.generate.utils.firstIndex">
+        function <span class="apidocSignatureSpan">generate.utils.</span>firstIndex
+        <span class="apidocSignatureSpan">(arr, items)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">firstIndex = function (arr, items) {
+  items = utils.arrayify(items);
+  var idx = -1;
+  for (var i = 0; i &#x3c; arr.length; i++) {
+    if (items.indexOf(arr[i]) !== -1) {
+      idx = i;
+      break;
+    }
+  }
+  return idx;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Initialize CLI
+ */
+
+App.on(&#x27;generate.postInit&#x27;, function(app) {
+  debug(&#x27;postInit&#x27;, app.env);
+  app.option(argv);
+
+  var idx = utils.<span class="apidocCodeKeywordSpan">firstIndex</span>(args, [&#x27;-D&#x27;, &#x27;--default&#x27;]);
+  if (idx !== -1) {
+args.splice(idx, 1);
+
+if (args.indexOf(&#x27;--del&#x27;) !== -1) {
+  var tasks = app.store.get(&#x27;defaultTasks&#x27;);
+  app.store.del(&#x27;defaultTasks&#x27;);
+  app.log.warn(&#x27;deleted default tasks:&#x27;, tasks);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.get" id="apidoc.element.generate.utils.get">
+        function <span class="apidocSignatureSpan">generate.utils.</span>get
+        <span class="apidocSignatureSpan">(obj, prop, a, b, c)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (obj, prop, a, b, c) {
+  if (!isObject(obj) || !prop) {
+    return obj;
+  }
+
+  prop = toString(prop);
+
+  // allowing for multiple properties to be passed as
+  // a string or array, but much faster (3-4x) than doing
+  // `[].slice.call(arguments)`
+  if (a) prop += &#x27;.&#x27; + toString(a);
+  if (b) prop += &#x27;.&#x27; + toString(b);
+  if (c) prop += &#x27;.&#x27; + toString(c);
+
+  if (prop in obj) {
+    return obj[prop];
+  }
+
+  var segs = prop.split(&#x27;.&#x27;);
+  var len = segs.length;
+  var i = -1;
+
+  while (obj &#x26;&#x26; (++i &#x3c; len)) {
+    var key = segs[i];
+    while (key[key.length - 1] === &#x27;\\&#x27;) {
+      key = key.slice(0, -1) + &#x27;.&#x27; + segs[++i];
+    }
+    obj = obj[key];
+  }
+  return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  app.option(argv);
+
+  var idx = utils.firstIndex(args, [&#x27;-D&#x27;, &#x27;--default&#x27;]);
+  if (idx !== -1) {
+args.splice(idx, 1);
+
+if (args.indexOf(&#x27;--del&#x27;) !== -1) {
+  var tasks = app.store.<span class="apidocCodeKeywordSpan">get</span>(&#x27;defaultTasks&#x27;);
+  app.store.del(&#x27;defaultTasks&#x27;);
+  app.log.warn(&#x27;deleted default tasks:&#x27;, tasks);
+  app.emit(&#x27;done&#x27;);
+  process.exit();
+} else {
+  app.store.set(&#x27;defaultTasks&#x27;, args);
+  app.log.success(&#x27;saved default tasks:&#x27;, args);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.getTasks" id="apidoc.element.generate.utils.getTasks">
+        function <span class="apidocSignatureSpan">generate.utils.</span>getTasks
+        <span class="apidocSignatureSpan">(configFile, arrays)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getTasks = function (configFile, arrays) {
+  arrays = utils.arrayify(arrays);
+  var tasks = [];
+
+  if (configFile) {
+    tasks = utils.arrayify(arrays[0]);
+    return tasks.length &#x3e;= 1 ? tasks : [&#x27;default&#x27;];
+  }
+
+  for (var i = 0; i &#x3c; arrays.length; i++) {
+    var arr = utils.arrayify(arrays[i]);
+    // if `default` task is defined, continue
+    if (arr.length === 1 &#x26;&#x26; arr[0] === &#x27;default&#x27;) {
+      continue;
+    }
+    // if nothing is defined, continue
+    if (arr.length === 0) {
+      continue;
+    }
+    tasks = arr;
+    break;
+  }
+  return tasks;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * generators published for handling the built-in tasks.
+ */
+
+module.exports = function(app, ctx, argv) {
+var configFile = ctx.env.configFile;
+
+// determine the tasks to run (returns the first value that isn&#x27;t `[&#x22;default&#x22;]` or `[]`)
+var tasks = utils.<span class="apidocCodeKeywordSpan">getTasks</span>(configFile, [
+  argv._, // command line
+  ctx.pkgConfig.tasks, // set in package.json
+  app.store.get(&#x27;defaultTasks&#x27;) // stored user-defined &#x22;default&#x22; tasks
+]);
+
+tasks = tasks || [];
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.isObject" id="apidoc.element.generate.utils.isObject">
+        function <span class="apidocSignatureSpan">generate.utils.</span>isObject
+        <span class="apidocSignatureSpan">(val)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isObject(val) {
+  return val != null &#x26;&#x26; typeof val === &#x27;object&#x27; &#x26;&#x26; isArray(val) === false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+   * Initialize middleware
+   */
+
+  Generate.initGenerateMiddleware = function(app) {
+    app.preWrite(/./, function(view, next) {
+var askName = view.data &#x26;&#x26; view.data.ask;
+var hint = view.basename;
+if (utils.<span class="apidocCodeKeywordSpan">isObject</span>(askName)) {
+  var obj = askName;
+  hint = obj.default || hint;
+  askName = obj.rename;
+}
+
+function setValue(obj) {
+  var key = askName;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.lazyData" id="apidoc.element.generate.utils.lazyData">
+        function <span class="apidocSignatureSpan">generate.utils.</span>lazyData
+        <span class="apidocSignatureSpan">(app, key, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lazyData = function (app, key, fn) {
+  var cached;
+  Object.defineProperty(app.cache.data, key, {
+    set: function(val) {
+      cached = val;
+    },
+    get: function() {
+      return cached || (cached = fn.call(this));
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.log" id="apidoc.element.generate.utils.log">
+        function <span class="apidocSignatureSpan">generate.utils.</span>log
+        <span class="apidocSignatureSpan">(name, alias)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function proxy(name, alias) {
+  var key = alias;
+
+  // camel-case the module `name` if `alias` is not defined
+  if (typeof key !== &#x27;string&#x27;) {
+    key = camelcase(name);
+  }
+
+  // create a getter to lazily invoke the module the first time it&#x27;s called
+  function getter() {
+    return cache[key] || (cache[key] = requireFn(name));
+  }
+
+  // trip the getter if `process.env.UNLAZY` is defined
+  if (unlazy(process.env)) {
+    getter();
+  }
+
+  set(proxy, key, getter);
+  return getter;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Handle errors
+ */
+
+function handleErr(app, err) {
+  if (app &#x26;&#x26; app.base.hasListeners(&#x27;error&#x27;)) {
+    app.base.emit(&#x27;error&#x27;, err);
+  } else {
+    console.<span class="apidocCodeKeywordSpan">log</span>(err.stack);
+    process.exit(1);
+  }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.macros" id="apidoc.element.generate.utils.macros">
+        function <span class="apidocSignatureSpan">generate.utils.</span>macros
+        <span class="apidocSignatureSpan">(name, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function macros(name, config) {
+  if (typeof name === &#x27;object&#x27;) {
+    config = name;
+    name = null;
+  }
+
+  var opts = utils.extend({}, config);
+  opts.name = name || opts.name;
+
+  var store = new Store(opts);
+  var parse = opts.parser || utils.parser;
+
+<span class="apidocCodeCommentSpan">  /**
+   * Parser function used to parse the argv array and process macros.
+   *
+   * @name parser
+   * @param  {Array} `argv` Array of arguments to process
+   * @param  {Object} `options` Additional options to pass to the argv parser
+   * @return {Object} `args` object [described above](#macros)
+   * @api public
+   */
+</span>
+  return function parser(argv, options) {
+    argv = utils.arrayify(argv);
+
+    var opts = utils.extend({}, options);
+    var args = parse(argv, opts);
+    var val, key;
+
+    switch (args.macro) {
+      case undefined:
+        // fall through
+      case &#x27;get&#x27;:
+        key = args._[0];
+        val = key &#x26;&#x26; store.get(key);
+        if (val === key) {
+          val = key = null;
+        }
+        break;
+      case &#x27;del&#x27;:
+        store.del(args._[0]);
+        break;
+      case &#x27;set&#x27;:
+        store.set(args._[0], utils.getValues(argv, 3));
+        break;
+      default: {
+        store.set(args.macro, utils.getValues(argv, 2));
+        break;
+      }
+    }
+
+    var res = val ? parse(val, opts) : args;
+    if (key) res.isMacro = key;
+    res.__proto__ = store;
+    return res;
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+&#x27;generate-foo&#x27;,
+&#x27;generate-bar&#x27;,
+&#x27;generate-function&#x27;,
+&#x27;generate-object-property&#x27;
+];
+
+utils.parseArgs = function(argv) {
+var parse = utils.<span class="apidocCodeKeywordSpan">macros</span>(&#x27;generate-macro-store&#x27;);
+var obj = parse(argv, utils.opts);
+
+for (var key in obj) {
+  var val = obj[key];
+  if (/^no\w/.test(key)) {
+    obj[key.slice(2)] = !val;
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.parse" id="apidoc.element.generate.utils.parse">
+        function <span class="apidocSignatureSpan">generate.utils.</span>parse
+        <span class="apidocSignatureSpan">(args, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Parser(args, opts) {
+  var result = parse(args.slice(), opts)
+
+  return result.argv
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.parseArgs" id="apidoc.element.generate.utils.parseArgs">
+        function <span class="apidocSignatureSpan">generate.utils.</span>parseArgs
+        <span class="apidocSignatureSpan">(argv)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseArgs = function (argv) {
+  var parse = utils.macros(&#x27;generate-macro-store&#x27;);
+  var obj = parse(argv, utils.opts);
+
+  for (var key in obj) {
+    var val = obj[key];
+    if (/^no\w/.test(key)) {
+      obj[key.slice(2)] = !val;
+    }
+  }
+
+  if (obj.init) {
+    obj._.push(&#x27;init&#x27;);
+    delete obj.init;
+  }
+  if (obj.help) {
+    obj._.push(&#x27;help&#x27;);
+    delete obj.help;
+  }
+  return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    obj._.push(&#x27;help&#x27;);
+    delete obj.help;
+  }
+  return obj;
+};
+
+utils.args = process.argv.slice(2);
+utils._argv = utils.<span class="apidocCodeKeywordSpan">parseArgs</span>(utils.args);
+utils.argv = {};
+
+for (var key in utils._argv) {
+  if (utils._argv.hasOwnProperty(key)) {
+    utils.argv[key] = utils._argv[key];
+  }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.renameKey" id="apidoc.element.generate.utils.renameKey">
+        function <span class="apidocSignatureSpan">generate.utils.</span>renameKey
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">renameKey = function (app) {
+  var fn = app.options.renameKey;
+  if (typeof fn !== &#x27;function&#x27;) {
+    fn = function(key, file) {
+      return file ? file.basename : path.basename(key);
+    };
+  }
+  return fn;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.resolve" id="apidoc.element.generate.utils.resolve">
+        function <span class="apidocSignatureSpan">generate.utils.</span>resolve
+        <span class="apidocSignatureSpan">(name, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resolve(name, options) {
+  var file = resolve.file(name, options);
+  return file &#x26;&#x26; file.path;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  command: &#x27;gen&#x27;,
+  configname: &#x27;generator&#x27;,
+  appname: &#x27;generate&#x27;
+});
+
+app.define(&#x27;home&#x27;, function() {
+  var args = [].slice.call(arguments);
+  var home = path.<span class="apidocCodeKeywordSpan">resolve</span>(app.options.homedir || os.homedir());
+  return path.resolve.apply(path, [home].concat(args));
+});
+
+Object.defineProperty(app, &#x27;common&#x27;, {
+  configurable: true,
+  set: function(val) {
+    common = val;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.runnerEnabled" id="apidoc.element.generate.utils.runnerEnabled">
+        function <span class="apidocSignatureSpan">generate.utils.</span>runnerEnabled
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">runnerEnabled = function (app) {
+  if (app.options.cli === true || process.env.GENERATE_CLI === &#x27;true&#x27;) {
+    return true;
+  }
+  // if run from the generate cwd (and not using the `gen` command)
+  if (process.cwd() === path.resolve(__dirname, &#x27;..&#x27;)) {
+    return false;
+  }
+  return true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+ // load middleware
+ if (!process.env.GENERATE_TEST) {
+   Generate.initGenerateMiddleware(this);
+ }
+
+ // load CLI plugins
+ if (utils.<span class="apidocCodeKeywordSpan">runnerEnabled</span>(this)) {
+   this.initGenerateCLI(opts);
+ }
+ Generate.emit(&#x27;generate.postInit&#x27;, this);
+};
+
+/**
+* Initialize CLI-specific plugins and view collections.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.strip" id="apidoc.element.generate.utils.strip">
+        function <span class="apidocSignatureSpan">generate.utils.</span>strip
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">strip = function (str) {
+  return str.replace(/\x1B[[(?);]{0,2}(;?\d)*./g, &#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var pkg = require(pkgPath);
+list.push([app.log.gray(pkg.version), file.basename, app.log.cyan(file.alias)]);
+next();
+  }, function(cb) {
+console.log();
+console.log(utils.table(list, {
+  stringLength: function(str) {
+    return utils.<span class="apidocCodeKeywordSpan">strip</span>(str).length;
+  }
+}));
+
+console.log();
+console.log(app.log.magenta(list.length + &#x27; generators installed&#x27;));
+console.log();
+cb();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.table" id="apidoc.element.generate.utils.table">
+        function <span class="apidocSignatureSpan">generate.utils.</span>table
+        <span class="apidocSignatureSpan">(rows_, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">table = function (rows_, opts) {
+    if (!opts) opts = {};
+    var hsep = opts.hsep === undefined ? &#x27;  &#x27; : opts.hsep;
+    var align = opts.align || [];
+    var stringLength = opts.stringLength
+        || function (s) { return String(s).length; }
+    ;
+
+    var dotsizes = reduce(rows_, function (acc, row) {
+        forEach(row, function (c, ix) {
+            var n = dotindex(c);
+            if (!acc[ix] || n &#x3e; acc[ix]) acc[ix] = n;
+        });
+        return acc;
+    }, []);
+
+    var rows = map(rows_, function (row) {
+        return map(row, function (c_, ix) {
+            var c = String(c_);
+            if (align[ix] === &#x27;.&#x27;) {
+                var index = dotindex(c);
+                var size = dotsizes[ix] + (/\./.test(c) ? 1 : 2)
+                    - (stringLength(c) - index)
+                ;
+                return c + Array(size).join(&#x27; &#x27;);
+            }
+            else return c;
+        });
+    });
+
+    var sizes = reduce(rows, function (acc, row) {
+        forEach(row, function (c, ix) {
+            var n = stringLength(c);
+            if (!acc[ix] || n &#x3e; acc[ix]) acc[ix] = n;
+        });
+        return acc;
+    }, []);
+
+    return map(rows, function (row) {
+        return map(row, function (c, ix) {
+            var n = (sizes[ix] - stringLength(c)) || 0;
+            var s = Array(Math.max(n + 1, 1)).join(&#x27; &#x27;);
+            if (align[ix] === &#x27;r&#x27; || align[ix] === &#x27;.&#x27;) {
+                return s + c;
+            }
+            if (align[ix] === &#x27;c&#x27;) {
+                return Array(Math.ceil(n / 2 + 1)).join(&#x27; &#x27;)
+                    + c + Array(Math.floor(n / 2 + 1)).join(&#x27; &#x27;)
+                ;
+            }
+
+            return c + s;
+        }).join(hsep).replace(/\s+$/, &#x27;&#x27;);
+    }).join(&#x27;\n&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var pkgPath = path.resolve(file.path, &#x27;package.json&#x27;);
+var pkg = require(pkgPath);
+list.push([app.log.gray(pkg.version), file.basename, app.log.cyan(file.alias)]);
+next();
+  }, function(cb) {
+console.log();
+console.log(utils.<span class="apidocCodeKeywordSpan">table</span>(list, {
+  stringLength: function(str) {
+    return utils.strip(str).length;
+  }
+}));
+
+console.log();
+console.log(app.log.magenta(list.length + &#x27; generators installed&#x27;));
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.generate.utils.through" id="apidoc.element.generate.utils.through">
+        function <span class="apidocSignatureSpan">generate.utils.</span>through
+        <span class="apidocSignatureSpan">(options, transform, flush)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">through = function (options, transform, flush) {
+  if (typeof options == &#x27;function&#x27;) {
+    flush     = transform
+    transform = options
+    options   = {}
+  }
+
+  if (typeof transform != &#x27;function&#x27;)
+    transform = noop
+
+  if (typeof flush != &#x27;function&#x27;)
+    flush = null
+
+  return construct(options, transform, flush)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
